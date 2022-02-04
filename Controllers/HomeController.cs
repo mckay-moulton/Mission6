@@ -11,13 +11,11 @@ namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
         }
-
+        //__________________________________________________________________________________
+        //Home page
         public IActionResult Index()
         {
             return View();
@@ -38,7 +36,6 @@ namespace Mission6.Controllers
 
         public IActionResult Confirmaton()
         {
-            
             return View();
         }
 
