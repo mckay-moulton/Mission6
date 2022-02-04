@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Add A Task";
+}
+
+@model Mission6.Models.TaskForm
+
+@*Now Create form to add a new task*@
+
+<div>
+    <form method="post">
+        <label asp-for="TaskName">Task: </label>
+        <input asp-for="TaskName" />
+
+        <label asp-for="DueDate">Due Date: </label>
+        <input asp-for="DueDate" /><br />
+
+        <label asp-for="Quadrant">Quadrant: </label>
+        <input asp-for="Quadrant" />
+
+        @*Category (Dropdown containing options: Home, School, Work, Church)*@
+        <label asp-for="Category">Category: </label>
+        <select asp-for="Category">
+            <option value="Home">Home</option>
+            <option value="School">School</option>
+            <option value="Work">Work</option>
+            <option value="Church">Church</option>
+        </select>
+
+
+        <label asp-for="Completed">Completed: </label>
+        <select asp-for="Completed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+
+        <button type="submit">Submit Task</button>
+    </form>
+
+</div>
