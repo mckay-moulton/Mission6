@@ -39,7 +39,6 @@ namespace Mission6.Controllers
 
         public IActionResult Confirmaton()
         {
-            
             return View();
         }
 
