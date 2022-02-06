@@ -11,12 +11,13 @@ namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private TaskContext DataSource { get; set; }
+        public HomeController(TaskContext tc)
         {
-            _logger = logger;
+            DataSource = tc;
         }
+
 
         public IActionResult Index()
         {
