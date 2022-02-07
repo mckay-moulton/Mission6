@@ -15,7 +15,8 @@ namespace Mission6.Models
         public DateTime DueDate { get; set; }   /*Not sure if datetime is the way to go, if it doesn't work please change*/
         public bool Urgent { get; set; }
         public bool Important { get; set; }
-        public string Category { get; set; }
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
         public bool Completed { get; set; }
 
     }

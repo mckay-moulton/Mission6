@@ -13,10 +13,22 @@ namespace Mission6.Models
 
         }
 
+        public DbSet<Category> Categories { get; set; }
+
         public DbSet<TaskForm> Tasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.Entity<Category>().HasData(
+                new Category { CategoryID=1, CategoryName = "Home"},
+                new Category { CategoryID=2, CategoryName = "School"},
+                new Category { CategoryID=3, CategoryName = "Work" },
+                new Category { CategoryID=4, CategoryName = "Church" }
+                // Home, School, Work, Church
+
+                );
+
+
             mb.Entity<TaskForm>().HasData(
 
                 new TaskForm
@@ -26,7 +38,7 @@ namespace Mission6.Models
                     DueDate = DateTime.Now,
                     Urgent = true,
                     Important = false,
-                    Category = "Church",
+                    CategoryID = 4,
                     Completed = false
                 },
 
@@ -37,7 +49,7 @@ namespace Mission6.Models
                     DueDate = DateTime.Now,
                     Urgent = false,
                     Important = true,
-                    Category = "School",
+                    CategoryID = 2,
                     Completed = false
                 },
 
@@ -48,7 +60,7 @@ namespace Mission6.Models
                     DueDate = DateTime.Now,
                     Urgent = false,
                     Important = false,
-                    Category = "Home",
+                    CategoryID = 1,
                     Completed = false
                 },
 
@@ -59,7 +71,7 @@ namespace Mission6.Models
                     DueDate = DateTime.Now,
                     Urgent = true,
                     Important = true,
-                    Category = "Work",
+                    CategoryID = 3,
                     Completed = false
                 }
                 );

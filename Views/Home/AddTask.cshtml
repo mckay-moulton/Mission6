@@ -10,29 +10,40 @@
 <div>
     <form method="post">
         <label asp-for="TaskName">Task: </label>
-        <input asp-for="TaskName" />
+        <input asp-for="TaskName" /><br />
 
         <label asp-for="DueDate">Due Date: </label>
         <input asp-for="DueDate" /><br />
 
-        <label asp-for="Urgent">Quadrant: </label>
-        <input asp-for="Urgent" />
+        <label asp-for="Urgent">Urgent: </label>
+        <select asp-for="Urgent">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
+
+        <label asp-for="Important">Important: </label>
+        <select asp-for="Important">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
 
         @*Category (Dropdown containing options: Home, School, Work, Church)*@
-        <label asp-for="Category">Category: </label>
-        <select asp-for="Category">
-            <option value="Home">Home</option>
-            <option value="School">School</option>
-            <option value="Work">Work</option>
-            <option value="Church">Church</option>
-        </select>
+        @*Will need to break out category into it's own table/database, review videos'*@
+        <label asp-for="CategoryID">Category: </label>
+        <select asp-for="CategoryID">
+            <option value="">Select Category</option>
+            @foreach (Category cat in ViewBag.Categories)
+            {
+                <option value="@cat.CategoryID">@cat.CategoryName</option>
+            }
+        </select><br />
 
 
         <label asp-for="Completed">Completed: </label>
         <select asp-for="Completed">
             <option value="true">Yes</option>
             <option value="false">No</option>
-        </select>
+        </select><br />
 
         <button type="submit">Submit Task</button>
     </form>

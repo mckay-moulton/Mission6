@@ -9,7 +9,7 @@ using Mission6.Models;
 namespace Mission6.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    [Migration("20220206000134_Initial")]
+    [Migration("20220207220512_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,14 +18,50 @@ namespace Mission6.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("Mission6.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            CategoryName = "Home"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            CategoryName = "School"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            CategoryName = "Work"
+                        },
+                        new
+                        {
+                            CategoryID = 4,
+                            CategoryName = "Church"
+                        });
+                });
+
             modelBuilder.Entity("Mission6.Models.TaskForm", b =>
                 {
                     b.Property<int>("TaskID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Completed")
                         .HasColumnType("INTEGER");
@@ -44,15 +80,17 @@ namespace Mission6.Migrations
 
                     b.HasKey("TaskID");
 
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("Tasks");
 
                     b.HasData(
                         new
                         {
                             TaskID = 1,
-                            Category = "Church",
+                            CategoryID = 4,
                             Completed = false,
-                            DueDate = new DateTime(2022, 2, 5, 17, 1, 33, 860, DateTimeKind.Local).AddTicks(4202),
+                            DueDate = new DateTime(2022, 2, 7, 15, 5, 11, 947, DateTimeKind.Local).AddTicks(7405),
                             Important = false,
                             TaskName = "Read Scriptures",
                             Urgent = true
@@ -60,9 +98,9 @@ namespace Mission6.Migrations
                         new
                         {
                             TaskID = 2,
-                            Category = "School",
+                            CategoryID = 2,
                             Completed = false,
-                            DueDate = new DateTime(2022, 2, 5, 17, 1, 33, 871, DateTimeKind.Local).AddTicks(1207),
+                            DueDate = new DateTime(2022, 2, 7, 15, 5, 11, 952, DateTimeKind.Local).AddTicks(6883),
                             Important = true,
                             TaskName = "404 Homework",
                             Urgent = false
@@ -70,9 +108,9 @@ namespace Mission6.Migrations
                         new
                         {
                             TaskID = 3,
-                            Category = "Home",
+                            CategoryID = 1,
                             Completed = false,
-                            DueDate = new DateTime(2022, 2, 5, 17, 1, 33, 871, DateTimeKind.Local).AddTicks(1294),
+                            DueDate = new DateTime(2022, 2, 7, 15, 5, 11, 952, DateTimeKind.Local).AddTicks(7005),
                             Important = false,
                             TaskName = "Clean Dishes",
                             Urgent = false
@@ -80,13 +118,22 @@ namespace Mission6.Migrations
                         new
                         {
                             TaskID = 4,
-                            Category = "Work",
+                            CategoryID = 3,
                             Completed = false,
-                            DueDate = new DateTime(2022, 2, 5, 17, 1, 33, 871, DateTimeKind.Local).AddTicks(1301),
+                            DueDate = new DateTime(2022, 2, 7, 15, 5, 11, 952, DateTimeKind.Local).AddTicks(7014),
                             Important = true,
                             TaskName = "Submit Time Correction",
                             Urgent = true
                         });
+                });
+
+            modelBuilder.Entity("Mission6.Models.TaskForm", b =>
+                {
+                    b.HasOne("Mission6.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

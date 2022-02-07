@@ -27,13 +27,16 @@ namespace Mission6.Controllers
         [HttpGet]
         public IActionResult AddTask()
         {
+            ViewBag.Categories = DataSource.Categories.ToList();
             return View();
         }
 
         [HttpPost]
         public IActionResult AddTask(TaskForm task)
         {
-            //when user submits the form, they will be taken to a confirmation page, and we can confirm the task they entered.
+            DataSource.Add(task);
+            DataSource.SaveChanges();
+
             return View("Confirmation", task);
         }
 
