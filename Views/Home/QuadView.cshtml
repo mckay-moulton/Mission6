@@ -30,20 +30,53 @@
             @*Here, the code will sort through the TaskName in the Model when ready*@
             @foreach (var x in Model)
             {
-                <ul>
-                    <li>@x.TaskName</li>
-                </ul>
+                if (@x.Urgent == true & @x.Important == true)
+                {
+                    <ul> 
+                        <li>@x.TaskName</li>
+                    </ul>
+                } 
             }
         </div>
-        <div class="col-4 border border-dark">Quad</div>
+        <div class="col-4 border border-dark">
+            @foreach (var x in Model)
+            {
+                if (@x.Urgent == false & @x.Important == true)
+                {
+                    <ul>
+                        <li>@x.TaskName</li>
+                    </ul>
+                }
+            }
+        </div>
         <div class="col-1"></div>
     </div>
     @* Not Important Row   *@
     <div class="row ">
         <div class="col-1"></div>
         <div class="col-2 border border-dark"><h2> Not Important</h2></div>
-        <div class="col-4 border border-dark">Quad</div>
-        <div class="col-4 border border-dark">Quad</div>
+        <div class="col-4 border border-dark">
+            @foreach (var x in Model)
+            {
+                if (@x.Urgent == true & @x.Important == false)
+                {
+                    <ul>
+                        <li>@x.TaskName</li>
+                    </ul>
+                }
+            }
+        </div>
+        <div class="col-4 border border-dark">
+            @foreach (var x in Model)
+            {
+                if (@x.Urgent == false & @x.Important == false)
+                {
+                    <ul>
+                        <li>@x.TaskName</li>
+                    </ul>
+                }
+            }
+        </div>
         <div class="col-1"></div>
     </div>
 
