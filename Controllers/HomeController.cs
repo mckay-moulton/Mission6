@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission6.Models;
 using System;
@@ -29,6 +30,8 @@ namespace Mission6.Controllers
         {
             ViewBag.Categories = DataSource.Categories.ToList();
             return View();
+
+
         }
 
         [HttpPost]
@@ -40,19 +43,27 @@ namespace Mission6.Controllers
             return View("Confirmation", task);
         }
 
+
         public IActionResult Confirmaton()
         {
             return View();
         }
 
-
+        [HttpGet]
         public IActionResult ListView()
         {
-            return View();
+            var alltasks = DataSource.Tasks
+                .Include(x => x.Category)
+                .ToList();
+            return View(alltasks);
         }
+        [HttpGet]
         public IActionResult QuadView()
         {
-            return View();
+            var alltasks = DataSource.Tasks
+                .Include(x => x.Category)
+                .ToList();
+            return View(alltasks);
         }
 
     }

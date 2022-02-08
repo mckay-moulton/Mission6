@@ -1,5 +1,50 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
+
+@model List<TaskForm>
+
+<div class="contaner">
+    <div class="row">
+        @* filler row *@
+    </div>
+    @* Title *@
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 border border-dark"><h1> Stephen Covey's Time Management Matrix</h1></div>
+        <div class="col-1"></div>
+    </div>
+    @* Column names  *@
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 border border-dark"></div>
+        <div class="col-4 border border-dark"><h2>Urgent</h2></div>
+        <div class="col-4 border border-dark"><h2>Not Urgent</h2></div>
+        <div class="col-1"></div>
+    </div>
+    @* Important Row*@
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 border border-dark"><h2> Important</h2></div>
+        <div class="col-4 border border-dark">
+            @*Here, the code will sort through the TaskName in the Model when ready*@
+            @foreach (var x in Model)
+            {
+                <ul>
+                    <li>@x.TaskName</li>
+                </ul>
+            }
+        </div>
+        <div class="col-4 border border-dark">Quad</div>
+        <div class="col-1"></div>
+    </div>
+    @* Not Important Row   *@
+    <div class="row ">
+        <div class="col-1"></div>
+        <div class="col-2 border border-dark"><h2> Not Important</h2></div>
+        <div class="col-4 border border-dark">Quad</div>
+        <div class="col-4 border border-dark">Quad</div>
+        <div class="col-1"></div>
+    </div>
+
+</div>
