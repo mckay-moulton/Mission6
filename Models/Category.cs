@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mission6.Models
 {
+    //Create the table with relations for Category
     public class Category
     {
         [Key]

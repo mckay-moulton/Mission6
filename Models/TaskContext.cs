@@ -17,6 +17,7 @@ namespace Mission6.Models
 
         public DbSet<TaskForm> Tasks { get; set; }
 
+        // seed the data
         protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<Category>().HasData(
