@@ -2,9 +2,13 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+@{
+    ViewData["Title"] = "Quad View";
+}
+
 @model List<TaskForm>
 
-<div class="contaner">
+<div class="container">
     <div class="row">
         @* filler row *@
     </div>
@@ -32,10 +36,16 @@
             {
                 if (@x.Urgent == true & @x.Important == true)
                 {
-                    <ul> 
-                        <li>@x.TaskName</li>
+                    <ul>
+                        <li>
+                            @x.TaskName - 
+                            <a asp-controller="Home" asp-action="Edit" asp-route-TaskID="@x.TaskID">Edit</a>
+                            |
+                            <a asp-controller="Home" asp-action="Delete" asp-route-TaskID="@x.TaskID">Delete</a>
+                        </li>
+                        
                     </ul>
-                } 
+                }
             }
         </div>
         <div class="col-4 border border-dark">
@@ -44,7 +54,12 @@
                 if (@x.Urgent == false & @x.Important == true)
                 {
                     <ul>
-                        <li>@x.TaskName</li>
+                        <li>
+                            @x.TaskName -
+                            <a asp-controller="Home" asp-action="Edit" asp-route-TaskID="@x.TaskID">Edit</a>
+                            |
+                            <a asp-controller="Home" asp-action="Delete" asp-route-TaskID="@x.TaskID">Delete</a>
+                        </li>
                     </ul>
                 }
             }
@@ -61,7 +76,12 @@
                 if (@x.Urgent == true & @x.Important == false)
                 {
                     <ul>
-                        <li>@x.TaskName</li>
+                        <li>
+                            @x.TaskName -
+                            <a asp-controller="Home" asp-action="Edit" asp-route-TaskID="@x.TaskID">Edit</a>
+                            |
+                            <a asp-controller="Home" asp-action="Delete" asp-route-TaskID="@x.TaskID">Delete</a>
+                        </li>
                     </ul>
                 }
             }
@@ -72,7 +92,12 @@
                 if (@x.Urgent == false & @x.Important == false)
                 {
                     <ul>
-                        <li>@x.TaskName</li>
+                        <li>
+                            @x.TaskName -
+                            <a asp-controller="Home" asp-action="Edit" asp-route-TaskID="@x.TaskID">Edit</a>
+                            |
+                            <a asp-controller="Home" asp-action="Delete" asp-route-TaskID="@x.TaskID">Delete</a>
+                        </li>
                     </ul>
                 }
             }

@@ -1,5 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    ViewData["Title"] = "List of Tasks";
 }
+
+@model List<TaskForm>
+
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold">
+        <tr>
+            <td>Task Name</td>
+            <td>Due Date</td>
+            <td>Important?</td>
+            <td>Urgent?</td>
+            <td>Category</td>
+            <td>Completed?</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model)
+        {
+
+            if (x.Completed == false)
+            {
+            <tr>
+                <td>@x.TaskName</td>
+                <td>@x.DueDate</td>
+                <td>@x.Important</td>
+                <td>@x.Urgent</td>
+                <td>@x.Category.CategoryName</td>
+                <td>@x.Completed</td>
+
+
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-TaskID="@x.TaskID">Edit</a></td>
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-TaskID="@x.TaskID">Delete</a></td>
+            </tr>
+            }
+            
+        }
+    </tbody>
+</table>

@@ -66,5 +66,33 @@ namespace Mission6.Controllers
             return View(alltasks);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int TaskID)
+        {
+            ViewBag.Categories = DataSource.Categories.ToList();
+
+            var application = DataSource.Tasks.Single(x => x.TaskID == TaskID);
+
+            return View("AddTask", application);
+        }
+        [HttpPost]
+        public IActionResult Edit(TaskForm x)
+        {
+            DataSource.Update(x);
+            DataSource.SaveChanges();
+
+            return RedirectToAction("ListView");
+        }
+      
+        public IActionResult Delete(TaskForm x)
+        {
+            DataSource.Tasks.Remove(x);
+            DataSource.SaveChanges();
+
+            return RedirectToAction("ListView");
+        }
+
+
+
     }
 }
