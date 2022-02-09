@@ -19,21 +19,21 @@ namespace Mission6.Controllers
             DataSource = tc;
         }
 
-
+        //Action to return Index page view
         public IActionResult Index()
         {
             return View();
         }
 
+        //Get for Adding task
         [HttpGet]
         public IActionResult AddTask()
         {
             ViewBag.Categories = DataSource.Categories.ToList();
             return View();
-
-
         }
 
+        //Submitting and saving the add task form
         [HttpPost]
         public IActionResult AddTask(TaskForm task)
         {
@@ -43,12 +43,13 @@ namespace Mission6.Controllers
             return View("Confirmation", task);
         }
 
-
+        //Page to confirm submission of add task
         public IActionResult Confirmaton()
         {
             return View();
         }
 
+        //Return the list of all tasks submitted
         [HttpGet]
         public IActionResult ListView()
         {
@@ -57,6 +58,8 @@ namespace Mission6.Controllers
                 .ToList();
             return View(alltasks);
         }
+
+        //Action to return tasks in the quad view 
         [HttpGet]
         public IActionResult QuadView()
         {

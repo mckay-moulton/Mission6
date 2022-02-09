@@ -8,13 +8,12 @@ namespace Mission6.Models
 {
     public class TaskForm
     {
-        // This is a test
-
+        // Relationship and table for Tasks
         [Key]
         [Required]
         public int TaskID {get;set;}
         public string TaskName { get; set; }
-        public DateTime DueDate { get; set; }   /*Not sure if datetime is the way to go, if it doesn't work please change*/
+        public DateTime DueDate { get; set; }  
         public bool Urgent { get; set; }
         public bool Important { get; set; }
         public int CategoryID { get; set; }
